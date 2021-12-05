@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title><%= title%></title>
+        <link rel="stylesheet" href="css/layout.css">
+<!-- here style should be small  style -->
+<!-- here style is used to kept the stlye tag of the of the another page -->
+        <%- style %>
+    </head>
+    <body>
+        <!-- useing partials  -->
+        <%- include('_header.ejs'); -%> 
+     
+        <!-- <h1>This is codeial speaking
+        </h1> -->
+        <!-- this is used to tell that what is variable part -->
+        <%-  body %>
+
+        <%- include('_footer'); %>
+
+        <!-- similar to the style tag we do it for script tag -->
+        <%- script %>
+
+
+
+    </body>
+</html>
