@@ -1,8 +1,22 @@
 const express = require('express');
 const port = 8000;
 const app = express();
+
+
 // here we require the express ejs layout
 const expressLayouts = require('express-ejs-layouts');
+
+// acquir cookies parser
+const cookieParser = require('cookie-parser');
+
+
+const db = require('./cofig/mongoose');
+// const { urlencoded } = 
+app.use(express.urlencoded());
+
+// now use cookies parser
+app.use(cookieParser());
+
 
 app.use(express.static("./assets"));
 
@@ -17,7 +31,7 @@ app.use('/' , require('./routes/index'));
 app.set('layout extractStyles' , true);
 app.set('layout extractScripts' , true);
 
-// set up the view engine
+// // set up the view engine
 app.set('view engine' , 'ejs');
 app.set('views' , './views');
 
