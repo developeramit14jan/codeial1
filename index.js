@@ -11,6 +11,14 @@ const cookieParser = require('cookie-parser');
 
 
 const db = require('./cofig/mongoose');
+// require express session
+
+const session = require('express-session');
+// require passport
+const passport = require('passport');
+// passport strategy
+
+const passportLocal = require('./cofig/passport-local-strategy');
 // const { urlencoded } = 
 app.use(express.urlencoded());
 
@@ -26,7 +34,7 @@ app.use(expressLayouts);
 
 
 // use express router as middle ware
-app.use('/' , require('./routes/index'));
+// app.use('/' , require('./routes/index'));
 // extract style and script from subpages into layout
 app.set('layout extractStyles' , true);
 app.set('layout extractScripts' , true);
@@ -35,6 +43,20 @@ app.set('layout extractScripts' , true);
 app.set('view engine' , 'ejs');
 app.set('views' , './views');
 
+app.use(session({
+    name:'codeial',
+    // change the secret
+    secret:"Amit1999",
+    saveUninitialized : false,
+    resave:false,
+    cookie:{
+        maxAge:(1000 * 60 * 100)
+    }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/' , require('./routes/index'));
 
 
 
