@@ -1,5 +1,5 @@
 const express = require('express');
-const Passport = require('passport');
+const passport = require('../cofig/passport-local-strategy');
 const router = express.Router();
 // accessing the user controller
 const userController = require('../controllers/users_controller');
@@ -17,7 +17,7 @@ router.post('/create' , userController.create);
 // router.post('/create-session' , userController.createSession);
 
 //use passport as middle ware
-router.post('/create-session' ,  Passport.authenticate('local', {failureRedirect:'/'}), userController.createSession);
+ router.post('/create-session' ,  passport.authenticate('local', {failureRedirect:'/user/signin'}), userController.createSession);
 
 // ) ;
 // router.get('/delete-cookie' , userController.deleteCookie);

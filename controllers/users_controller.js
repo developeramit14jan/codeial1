@@ -39,8 +39,8 @@ module.exports.Signin = function(request , response){
 
 //get sigiup data
 module.exports.create =function(request , response){
-    console.log(request.body.Email );
-    console.log(request.body.Password);
+    // console.log(request.body.Email );
+    // console.log(request.body.Password);
     
     if(request.body.Password != request.body.Confirm_password){
         return response.redirect('back');
@@ -53,7 +53,7 @@ module.exports.create =function(request , response){
         if(!userfdb){
             User.create({Email:request.body.Email , Password:request.body.Password}, function(err , newuser){
                 if(err){console.log("error in creating" , err) ; return ;}
-                console.log(newuser);
+                // console.log(newuser);
                 return response.redirect('/user/signin');
             });
         }else{
@@ -65,7 +65,8 @@ module.exports.create =function(request , response){
 
 // signin and create session for user
 module.exports.createSession = function(request , response){
-    console.log(request.body)
+    // console.log(request.body)
+
     return response.redirect('/');
     // code from library passport.js
 
@@ -81,6 +82,7 @@ module.exports.createSession = function(request , response){
     //             return response.redirect('back');
     //         }
     //         response.cookie('userdb_id', userdb.id);  // this is setting cookie
+    //         console.log(userdb.id);
     //         return response.redirect('/user/profile');
     //     }else{
     //         return response.end('back');
