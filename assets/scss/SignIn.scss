@@ -1,0 +1,54 @@
+body{
+    background-image: linear-gradient(45deg , rgb(41,184,228),rgb(208,15,226));
+}
+
+#signin-data{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#sign-in{
+    height: 60vh;
+    width: 25vw;
+    margin-top: 40px;
+    background-color: #f0f8ff;
+    display: flex;
+    // flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p{
+        text-align: center;
+        font-style: oblique;
+        color: grey;
+    }
+    #input-email{
+        text-align: center;
+        height: 100opx;
+    }
+    #email{
+        width: 20vw;
+        padding: 5px;
+        font-size: 15px;
+        margin: 4px;
+    }
+    #password{
+        width: 20vw;
+        padding: 5px;
+        font-size: 15px;
+        margin: 4px;
+    }
+    #div-button{
+        text-align: center;
+    }
+    #button{
+        width:10vw;
+        padding: 6px;
+        font-size: 15px;
+        margin-top: 10px;
+        background-image: linear-gradient(120deg, rgb(41,184,228),rgb(208,15,226));
+        color:white;
+        
+
+    }
+}

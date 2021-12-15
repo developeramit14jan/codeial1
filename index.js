@@ -20,6 +20,20 @@ const passport = require('passport');
 
 const passportLocal = require('./cofig/passport-local-strategy');
 // const { urlencoded } = 
+
+// use mongo store to store the session for longer time
+
+const MongoStore = require('connect-mongo');
+
+// now use node sass middle ware
+const sassMiddleWare = require('node-sass-middleware');
+app.use(sassMiddleWare({
+    src:'./assets/scss',
+    dest:'./assets/css',
+    debug:true,
+    outputStyle:'extended',
+    prefix:'/css'
+}));
 app.use(express.urlencoded());
 
 // now use cookies parser
@@ -43,6 +57,7 @@ app.set('layout extractScripts' , true);
 app.set('view engine' , 'ejs');
 app.set('views' , './views');
 
+// mongo store is used to store the session in db
 app.use(session({
     name:'codeial',
     // change the secret
@@ -51,11 +66,20 @@ app.use(session({
     resave:false,
     cookie:{
         maxAge:(1000 * 60 * 100)
-    }
+    },
+
+    store: new MongoStore({
+        // mongooseConnection :db,
+        mongoUrl:'mongodb://localhost/codeial_developement',
+        autoRemve:'interval',
+        autoRemoveInterval:'1'
+    }, function(err){console.log(err || "connect to mongo");}
+    )
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(passport.setAuthenticatedUser)
 app.use('/' , require('./routes/index'));
 
 

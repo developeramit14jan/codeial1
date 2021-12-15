@@ -5,7 +5,7 @@ const router = express.Router();
 const userController = require('../controllers/users_controller');
 
 // accessing the route and controller both
-router.get('/profile' , userController.usersProfile);
+router.get('/profile' ,passport.checkAuthentication, userController.usersProfile);
 
 
 // router.use('/signUp' , require('./Signup'));
@@ -19,6 +19,8 @@ router.post('/create' , userController.create);
 //use passport as middle ware
  router.post('/create-session' ,  passport.authenticate('local', {failureRedirect:'/user/signin'}), userController.createSession);
 
+ router.get('/sign-out' , userController.destroySession);
+ router.get('/sign-in' , userController.userSignIn);
 // ) ;
 // router.get('/delete-cookie' , userController.deleteCookie);
 

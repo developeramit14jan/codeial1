@@ -1,3 +1,18 @@
+<link rel="stylesheet" href="/css/header.css">
 <header>
-    page header
+    <!-- page header -->
+    <div id="header">
+        <div><p id ="logo">
+            <span>C</span>ODEIAL</p> </div>
+       
+        <% if(locals.user){ %>
+        <!-- <li><%= user.Name %></li> -->
+        <li><%= user.Email %></li>
+        <div><a href ="/user/sign-out">Signout</a></li></div>
+        <% }else{ %>
+            
+               <div id = "button"> <a href="/user/Sign-in"><buttton>SignIn</buttton></a></div>
+            
+            <% } %>
+    </div>
 </header>

@@ -3,39 +3,49 @@
 const User = require('../models/users');
 module.exports.usersProfile = function(request , response){
 
-    if(request.cookies.userdb_id){
-        User.findById(request.cookies.userdb_id , function(err , user){
-            if(user){
-                return response.render('users',{
-                    title:"profile",
-                    User : user
-                });
+    // if(request.cookies.userdb_id){
+    //     User.findById(request.cookies.userdb_id , function(err , user){
+    //         if(user){
+    //             return response.render('users',{
+    //                 title:"profile",
+    //                 User : user
+    //             });
 
-            }
-            return response.redirect('/user/signin');
-        });
-    }else{
-        return response.redirect('/user/signin');
-    }
+    //         }
+    //         return response.redirect('/user/signin');
+    //     });
+    // }else{
+    //     return response.redirect('/user/signin');
+    // }
     // return response.end("This is user profile");
-    // return response.render('users' , {
-    //     title:"users Page"
-    // });
+    return response.render('users' , {
+        title:"users Page"
+    });
 }
 
 // render signup
  
 module.exports.signup = function(request , response){
+    //
+    if(request.isAuthenticated()){
+        return response.redirect('/user/profile');
+    }
     return response.render('Signup',{
         title :"Sign up | codeial"
     })
 }
 // render login page
 module.exports.Signin = function(request , response){
+// here use the authenticated use 
+    if(request.isAuthenticated()){
+        return response.redirect('/user/profile');
+    }else{
+
+    
     return response.render('Signin',{
         title:"sign in | codeial"
     });
-}
+}}
 
 //get sigiup data
 module.exports.create =function(request , response){
@@ -102,4 +112,18 @@ module.exports.deleteCookie = function(request , response){
     return response.render('Signin',{
         title:"SignIn | codeial"
     });
+}
+
+// cresting controller to destroy session
+
+module.exports.destroySession = function(request , response){
+    request.logout();
+    return response.redirect('/');
+}
+
+
+// sign_in link
+
+module.exports.userSignIn = function(request , response){
+    return response.redirect('/user/signin');
 }

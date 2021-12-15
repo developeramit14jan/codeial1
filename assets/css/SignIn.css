@@ -1,0 +1,43 @@
+body {
+  background-image: linear-gradient(45deg, #29b8e4, #d00fe2); }
+
+#signin-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+#sign-in {
+  height: 60vh;
+  width: 25vw;
+  margin-top: 40px;
+  background-color: #f0f8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  #sign-in p {
+    text-align: center;
+    font-style: oblique;
+    color: grey; }
+  #sign-in #input-email {
+    text-align: center;
+    height: 100opx; }
+  #sign-in #email {
+    width: 20vw;
+    padding: 5px;
+    font-size: 15px;
+    margin: 4px; }
+  #sign-in #password {
+    width: 20vw;
+    padding: 5px;
+    font-size: 15px;
+    margin: 4px; }
+  #sign-in #div-button {
+    text-align: center; }
+  #sign-in #button {
+    width: 10vw;
+    padding: 6px;
+    font-size: 15px;
+    margin-top: 10px;
+    background-image: linear-gradient(120deg, #29b8e4, #d00fe2);
+    color: white; }
