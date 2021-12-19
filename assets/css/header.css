@@ -7,15 +7,5 @@ header {
     display: flex;
     justify-content: space-between; }
     header #header #logo {
-      margin-top: -1px;
-      font-family: sans-serif; }
-    header #header span {
+      font-family: Helvetica;
       font-size: 50px; }
-    header #header #button {
-      width: 50px;
-      height: 30px;
-      margin: 10px;
-      font-family: fantasy;
-      font-size: 20px; }
-    header #header a {
-      border: 0px; }

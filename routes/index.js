@@ -5,7 +5,7 @@ const home = require('../controllers/users_controller')
 router.get('/' , homeController.home); // getting the controller access      
 router.use('/user' , require('./userR')); // accessing the neighbour router // this is use as middleware
 router.use('/post' , require('./post')); // this will move to post and post will further move to controller
-
+router.use('/comments' , require('./comment'));
 
 // all router can be access from index.js router 
 

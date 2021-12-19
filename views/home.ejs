@@ -4,12 +4,45 @@
     </head>
     <body>
         useing partials  -->
-        <!-- <%- include('_header'); -%>  -->
-     
-        <h1>This is codeial speaking
-        </h1>
+        
+     <link rel="stylesheet" href="/css/home.css">
+    <div id ="home-container">
+        <!-- <div id ="post-data"> -->
+            <section id ="feeds-post">
+                <h4>Posts</h4>
+                <!-- implementing the checks at the form -->
+                  <% if(locals.user){ %>
+                    <form action="/post/user-post" id = "new-post-form" method ="POST">
+                        <textarea name="content"  cols="60" rows="5" placeholder="Type Here"></textarea>
+                        <input type="submit" value="Post">
+                    </form>
+    
+                    <%}%>
+                    <section>
+                        <!-- one of the important syntax -->
+                     
+                        <% for( post of posts){%>
+                            <%- include('_post') -%>
+                        <% } %>
+                    </section>
+    
+            </section>
+            <Section id="user-Friends">
+                <% if(locals.all_users){ %>
+                <h4>Friends</h4>
+                <% for( u of all_users) {%>
+                    
+                    <p><a href="/user/profile/<%= u.id %>"><%= u.Name %></a></p>
+                    <% } %>
+                    <% } %>
+            </Section>
+    
+           <!-- </div> -->
 
-        <!-- <%- include('_footer'); %> -->
+    </div>
+        
+    
+        
 <!-- 
     </body>
 </html> -->

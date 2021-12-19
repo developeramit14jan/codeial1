@@ -5,8 +5,8 @@ const router = express.Router();
 const userController = require('../controllers/users_controller');
 
 // accessing the route and controller both
-router.get('/profile' ,passport.checkAuthentication, userController.usersProfile);
-
+router.get('/profile/:id' ,passport.checkAuthentication, userController.usersProfile);
+router.post('/update/:id' , passport.checkAuthentication , userController.update);
 
 // router.use('/signUp' , require('./Signup'));
 

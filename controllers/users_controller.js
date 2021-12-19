@@ -18,9 +18,27 @@ module.exports.usersProfile = function(request , response){
     //     return response.redirect('/user/signin');
     // }
     // return response.end("This is user profile");
-    return response.render('users' , {
-        title:"users Page"
-    });
+    User.findById(request.params.id , function(error , user){
+        return response.render('users' , {
+                title:"users Page",
+                profile_user:user
+            });
+    })
+    // return response.render('users' , {
+      //     title:"users Page"
+    // });
+}
+
+// updating the page
+module.exports.update = function(request , response){
+    // cuirrent user login will be
+    if(request.user.id == request.params.id){
+        User.findByIdAndUpdate(request.params.id ,{Name : request.body.name , Email:request.body.email} , function(error  , user){
+            return response.redirect('back');
+        });
+    }else{
+        return response.status(401).send('Un Authorise');
+    }
 }
 
 // render signup
@@ -61,7 +79,7 @@ module.exports.create =function(request , response){
         console.log(userfdb);
 
         if(!userfdb){
-            User.create({Email:request.body.Email , Password:request.body.Password}, function(err , newuser){
+            User.create({Name :request.body.Name, Email:request.body.Email , Password:request.body.Password}, function(err , newuser){
                 if(err){console.log("error in creating" , err) ; return ;}
                 // console.log(newuser);
                 return response.redirect('/user/signin');

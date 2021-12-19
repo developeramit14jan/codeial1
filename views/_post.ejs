@@ -1,0 +1,44 @@
+<% if((locals.user) && (locals.user.id == post.user.id)){%>
+    <small>
+        <a href="/post/destroy/<%= post._id %>">X</a>
+    </small>
+    <% } %>
+    <small><%= post.user.Name %></small>
+    <li><%= post.content%> </li>
+
+    <div  class ="post-comment">
+        <% if(locals.user) { %>
+            <form action="/comments/create" method="POST">
+              <input type="text" name ="content" placeholder="Type here to reply...">
+              <!-- here hiddenn part is the post_id of the comment database -->
+              <!-- here we are sending the id in the hidden formate -->
+              <input type="hidden" name ="post" , value="<%= post._id %>">
+              <input type="submit" , value="Add Comment">
+            
+            </form>
+            <%}%>
+
+            <div class ="post-comments-list">
+                <ul id="post-comment- <%= post._id %>">
+
+                    <% for( comment of post.comments ) {%>
+
+                        <% if((locals.user) && (locals.user.id == comment.user.id)){%>
+                            <small>
+                                <a href="/comments/destroy/<%= comment.id %>">X</a>
+                            </small>
+                            <% } %>
+                        <Strong><small><%= comment.user.Name %></small></Strong>  
+                        <p>
+                            <%= comment.content %>
+                        </p>
+                        
+                        <% }%>
+
+                </ul>
+
+            </div>
+        
+            
+    </div>
+    

@@ -2,16 +2,17 @@
 <header>
     <!-- page header -->
     <div id="header">
-        <div><p id ="logo">
-            <span>C</span>ODEIAL</p> </div>
+        <div id ="logo">
+            codeial </div>
        
         <% if(locals.user){ %>
         <!-- <li><%= user.Name %></li> -->
-        <li><%= user.Email %></li>
-        <div><a href ="/user/sign-out">Signout</a></li></div>
+        <div><%= user.Name %>
+        <!-- <li><%= user.Email%></li> -->
+        <a href ="/user/sign-out">Signout</a></div>
         <% }else{ %>
             
-               <div id = "button"> <a href="/user/Sign-in"><buttton>SignIn</buttton></a></div>
+               <div id = "button">   <a href="/user/Sign-in">SignIn</a></div>
             
             <% } %>
     </div>

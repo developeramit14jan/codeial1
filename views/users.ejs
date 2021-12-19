@@ -8,6 +8,21 @@
         </header> --> 
         <link rel="stylesheet" href="/css/user_profile.css">
         <h1>This is user profile pages</h1>
+        <!-- how the user is written this ask this issue -->
+  
+        <% if(user.id == profile_user.id){ %>
+            <!-- if user match then show the form  -->
+
+            <form action="/user/update/<%= profile_user.id %>" , method ="POST">
+            <input type="text" name ="name" , placeholder="Your Name" value ="<%= profile_user.Name %>" required>
+            <input type="email" name ="email" , placeholder="Your Email" value ="<%= profile_user.Email %>" required>
+            <input type="submit" value="update">
+        </form>
+            <% }else{ %>
+                <!-- else show the profile info -->
+                <p><%= profile_user.Name %></p>
+                <p><%= profile_user.Email %></p>
+                <% } %>
         <!-- <p>Email :<%= user.Email%></p> -->
         <!-- <a href="/user/delete-cookie">signout</a> -->
          <!-- <footer>

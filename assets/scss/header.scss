@@ -9,23 +9,10 @@ header{
     display: flex;   
     justify-content: space-between;
     #logo{
-        margin-top: -1px;
-        font-family: sans-serif;
-    }
-    span{
+        // margin-top: -1px;
+        font-family: Helvetica;
         font-size: 50px;
-        
     }
-
-    #button{
-        width:50px;
-        height:30px;
-        margin: 10px;
-        font-family: fantasy;
-        font-size: 20px;
-    }
-    a{
-        border: 0px;
-    }
+    
 }
 }
