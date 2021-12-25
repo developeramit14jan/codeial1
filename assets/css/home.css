@@ -3,8 +3,14 @@
   #home-container #feeds-post {
     width: 70%;
     padding: 10px; }
+  #home-container img {
+    width: 50;
+    border-radius: 50%; }
+  #home-container small {
+    margin-top: 100px; }
   #home-container #user-friends {
-    width: 30%;
+    margin-top: 10px;
+    width: 25%;
     padding: 10px;
-    border: 1px solid lightgrey;
+    background-color: white;
     height: 100%; }

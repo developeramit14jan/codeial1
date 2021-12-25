@@ -21,7 +21,7 @@ body {
     color: grey; }
   #sign-in #input-email {
     text-align: center;
-    height: 100opx; }
+    height: 40px; }
   #sign-in #email {
     width: 20vw;
     padding: 5px;

@@ -1,5 +1,6 @@
 // export the user models
-
+const fs = require('fs');
+const path = require('path');
 const User = require('../models/users');
 module.exports.usersProfile = function(request , response){
 
@@ -30,15 +31,54 @@ module.exports.usersProfile = function(request , response){
 }
 
 // updating the page
-module.exports.update = function(request , response){
+module.exports.update = async function(request , response){
     // cuirrent user login will be
+    // if(request.user.id == request.params.id){
+    //     User.findByIdAndUpdate(request.params.id ,{Name : request.body.name , Email:request.body.email} , function(error  , user){
+    //         return response.redirect('back');
+    //     });
+    // }else{
+    //     return response.status(401).send('Un Authorise');
+    // }
+
     if(request.user.id == request.params.id){
-        User.findByIdAndUpdate(request.params.id ,{Name : request.body.name , Email:request.body.email} , function(error  , user){
+        try{
+            let user = await User.findById(request.params.id);
+            // here multer process the request and pass to the function
+            User.uploadAvtar(request , response , function(error){
+                if(error){console.log('********Multer Error' , error)}
+                console.log(request.file);
+                user.Name = request.body.name;
+                user.Email = request.body.email;
+                if(request.file){
+                    if(user.avatar){
+                        // this check wether file exist or not
+                        if(fs.existsSync(path.join(__dirname , '..' , user.avatar))){
+                            // this is deleting a file
+                            fs.unlinkSync(path.join(__dirname , '..' , user.avatar))
+                        }
+                        
+                        
+                    }
+                    // this is saveing the path of uploaded file in the avatar field in user
+                    user.avatar = User.avatarPath +'/'+ request.file.filename;
+                
+
+                } 
+                  user.save();
+                  return response.redirect('back');
+
+            
+            });
+        }catch(error){
+            request.flash('error' , error);
             return response.redirect('back');
-        });
+        }
     }else{
         return response.status(401).send('Un Authorise');
     }
+
+
 }
 
 // render signup
@@ -94,7 +134,8 @@ module.exports.create =function(request , response){
 // signin and create session for user
 module.exports.createSession = function(request , response){
     // console.log(request.body)
-
+     //use flash message
+     request.flash("success" , 'Login in Successfully')
     return response.redirect('/');
     // code from library passport.js
 
@@ -135,7 +176,9 @@ module.exports.deleteCookie = function(request , response){
 // cresting controller to destroy session
 
 module.exports.destroySession = function(request , response){
-    request.logout();
+    request.logout(); // function given from passport.js
+    //flash message
+    request.flash("success" , "Logged out SuccessFully")
     return response.redirect('/');
 }
 

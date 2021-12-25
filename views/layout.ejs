@@ -2,6 +2,10 @@
     <head>
         <title><%= title%></title>
         <!-- / this is used so that it looks from the roots of the folder -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></Script>
+        <!-- <Scrip src ="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></Script> -->
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="/css/layout.css">
 <!-- here style should be small  style -->
 <!-- here style is used to kept the stlye tag of the of the another page -->
@@ -9,8 +13,12 @@
     </head>
     <body>
         <!-- useing partials  -->
-        <%- include('_header.ejs'); -%> 
-     
+        <%- include('_header.ejs')-%> 
+        <!-- <% if(flash.success.length>0){ %>
+        <h5><%= flash.success %></h5>
+        <% } %>    -->
+
+    
         <!-- <h1>This is codeial speaking
         </h1> -->
         <!-- this is used to tell that what is variable part -->
@@ -20,6 +28,29 @@
 
         <!-- similar to the style tag we do it for script tag -->
         <%- script %>
+            <!-- now show the notyjs flash message -->
+
+            <script>
+                <% if (flash.success && flash.success.length >0){ %>
+                    new Noty({
+                         them:'relax',
+                         text: "<%= flash.success%>",
+                         type :'success',
+                         layout:"topRight",
+                         time:1500 
+                         }).show();
+                    <% }%>
+                    // for error
+                    <% if (flash.error && flash.error.length >0){ %>
+                    new Noty({
+                         them:'relax',
+                         text: "<%= flash.error %>",
+                         type :'error',
+                         layout:"bottomCenter",
+                         time:1500 
+                         }).show();
+                    <% }%>
+            </script>
 
 
 

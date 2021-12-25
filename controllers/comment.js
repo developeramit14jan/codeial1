@@ -34,7 +34,7 @@ module.exports.destroy = function(request , response){
             comment.delete();
             // here the comment will be pull and thrown 
             Post.findByIdAndUpdate(postId , {$pull :{comments :request.param.id}} , function(err , post){
-                return response.redirect('back');
+                return response. redirect('back');
             })
         }else{
             return response.redirect('back');

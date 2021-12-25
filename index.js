@@ -19,14 +19,20 @@ const passport = require('passport');
 // passport strategy
 
 const passportLocal = require('./cofig/passport-local-strategy');
+const passportGoogle = require('./cofig/passport-google-oauth2');
 // const { urlencoded } = 
 
 // use mongo store to store the session for longer time
 
 const MongoStore = require('connect-mongo');
 
+// for flash message
+const flash = require('connect-flash');
+//customise middle ware
+const cmiddleware = require('./cofig/middleware');
 // now use node sass middle ware
 const sassMiddleWare = require('node-sass-middleware');
+
 app.use(sassMiddleWare({
     src:'./assets/scss',
     dest:'./assets/css',
@@ -45,6 +51,11 @@ app.use(express.static("./assets"));
 
 // now use expresslayout as middleware
 app.use(expressLayouts);
+
+// make the upload available to browser
+app.use('/upload' , express.static(__dirname+'/upload'));   
+
+// do practice
 
 
 // use express router as middle ware
@@ -79,7 +90,12 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(passport.setAuthenticatedUser)
+app.use(passport.setAuthenticatedUser);
+
+
+//use flash 
+app.use(flash());
+app.use(cmiddleware.setflashMessage);
 app.use('/' , require('./routes/index'));
 
 

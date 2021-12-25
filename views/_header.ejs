@@ -3,16 +3,17 @@
     <!-- page header -->
     <div id="header">
         <div id ="logo">
-            codeial </div>
+            < codeial /> </div>
        
         <% if(locals.user){ %>
         <!-- <li><%= user.Name %></li> -->
         <div><%= user.Name %>
         <!-- <li><%= user.Email%></li> -->
-        <a href ="/user/sign-out">Signout</a></div>
+        <a href ="/user/sign-out"><input id ="signout" type="button" value ="SignOut"></a></div>
         <% }else{ %>
             
-               <div id = "button">   <a href="/user/Sign-in">SignIn</a></div>
+               <div id = "button">   <a href="/user/Sign-in"><input id ="signin" type="button" value ="SignIn"></a>
+               <a href="/user/signup"><input id ="signup" type="button" value ="SignUp">  </a></div>
             
             <% } %>
     </div>

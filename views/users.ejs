@@ -7,15 +7,17 @@
             page header
         </header> --> 
         <link rel="stylesheet" href="/css/user_profile.css">
-        <h1>This is user profile pages</h1>
+        <!-- <h1>This is user profile pages</h1> -->
+        <img src="<%= user.avatar%>" alt="<%= user.Name %>" width ="100">
         <!-- how the user is written this ask this issue -->
-  
+        <!-- <embed src="<%= user.avatar%>.pdf" width="500" height="375" type="application/pdf"> -->
         <% if(user.id == profile_user.id){ %>
             <!-- if user match then show the form  -->
 
-            <form action="/user/update/<%= profile_user.id %>" , method ="POST">
+            <form action="/user/update/<%= profile_user.id %>" , method ="POST" , enctype="multipart/form-data">
             <input type="text" name ="name" , placeholder="Your Name" value ="<%= profile_user.Name %>" required>
             <input type="email" name ="email" , placeholder="Your Email" value ="<%= profile_user.Email %>" required>
+            <input type="file" name="Avtar" placeholder="profile pic">
             <input type="submit" value="update">
         </form>
             <% }else{ %>

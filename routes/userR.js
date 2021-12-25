@@ -21,6 +21,11 @@ router.post('/create' , userController.create);
 
  router.get('/sign-out' , userController.destroySession);
  router.get('/sign-in' , userController.userSignIn);
+
+
+
+ router.get('/auth/google' , passport.authenticate('google' , {scope :['profile' , 'email']}) );
+ router.get('/auth/google/callback' ,  passport.authenticate('google' , {failureRedirect :'/user/signin'} ), userController.createSession);
 // ) ;
 // router.get('/delete-cookie' , userController.deleteCookie);
 

@@ -7,21 +7,23 @@ console.log("Amit");
 passport.use(new LocalStrategy({
     // here email used is the email pass in form
     usernameField:'email',
+    passReqToCallback:true,
     // Consolelog(usernameField)
-    // passReqToCallback:true
+    // passReqToCallback:true  this tell us to pass the request to call back
+
 },
-function(email , password , done){
+function(request , email , password , done){
       // find user
 
       console.log(email , password);
       User.findOne({Email : email} , function (error , newUser){
-          if(error){console.log("Error in finding the user"); return done(error);}
+          if(error){request.flash('error' , error); return done(error);}
           console.log(newUser);
-
-        //   if(!newUser || newUser.password != password){
-        //       console.log("Invalid User Name");
-        //       return done(null , false);
-        //   }
+// here Password used is the models Password
+          if( !newUser || newUser.Password != password){
+            request.flash('error' , "Invalid Username/ Password");
+              return done(null , false);
+          }
         
           return done(null , newUser);
       })
