@@ -19,3 +19,6 @@ header {
       padding-right: 4px;
       width: 9vw;
       height: 5vh; }
+    header #header #details {
+      margin: 10px;
+      font-size: 25px; }

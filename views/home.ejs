@@ -24,7 +24,7 @@
                         <% for( post of posts){%>
                             <%- include('_post') -%>
                         <% } %>
-                    </section>
+                     </section>
     
             </section>
             <Section id="user-Friends">
@@ -42,7 +42,14 @@
     </div>
     <!-- this loading of the script tag -->
     <script src ="/js/home_post.js"></script>
-        
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.0/socket.io.js"></script>
+    <script src ="/js/chat_engine.js"></script>
+
+    <% if(locals.user){ %>
+    <script >
+        new ChatEngine('user-chat-box' , '<%= locals.user.Email %>');
+    </script>
+        <% } %>
     
         
 <!-- 

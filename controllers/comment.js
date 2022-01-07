@@ -1,28 +1,45 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
-module.exports.createcomment = function(request , response){
+const emailWorker = require('../worker/comment_email_worker');
+const queue = require('../cofig/kue')
+
+
+const commentMailer = require('../mailer/comment_mailer');
+module.exports.createcomment = async function(request , response){
     // here the request .body.post used is the hidden part of the comment form
-    console.log(post._id);
-    Post.findById((post._id) , function(err , post){
-        if(err){console.log("Error in finding the post"); return;}
+    // console.log(post._id);
+//    let post = await Post.findById((post._id)) ;
+      let post = await Post.findById(request.body.post);
+        // if(err){console.log("Error in finding the post"); return;}
+        let comment;
         if(post){
-            Comment.create({
+            comment = await Comment.create({
                 content:request.body.content,
                 post:request.body.post,
                 user:request.user._id
-            },  function(error , comment){
+            });
                 //handle error
                 
                 post.comments.push(comment);
                 
-                post.save(); //to save in db
+                post.save(); //to save in 
+                // .exc not working
+                comment = await comment.populate('user');
+                // commentMailer.newComment(comment);
+
+                //creating queue
+               let job =  queue.create('emails' , comment).save(function(error){
+                    if(error){console.log('error in creating queue');}
+                    console.log("This is job enqueue",job.id);
+                })
+
                 console.log(comment);
                  response.redirect('/');
             }
-            )
+            
         }
-    })
-}
+    
+
 
 
 

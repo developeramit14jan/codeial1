@@ -19,6 +19,8 @@ const passport = require('passport');
 // passport strategy
 
 const passportLocal = require('./cofig/passport-local-strategy');
+// we need to require this so that we can passport jwt can be used 
+const passportJwt = require('./cofig/passport-jwt-strategy');
 const passportGoogle = require('./cofig/passport-google-oauth2');
 // const { urlencoded } = 
 
@@ -32,6 +34,15 @@ const flash = require('connect-flash');
 const cmiddleware = require('./cofig/middleware');
 // now use node sass middle ware
 const sassMiddleWare = require('node-sass-middleware');
+
+
+// web socket set chat socket
+const chatServer = require('http').Server(app);
+const chatSockets = require('./cofig/chat_socket').chatSockets(chatServer);
+chatServer.listen(3000)
+    console.log("chat is running on the port number 3000");
+// });
+
 
 app.use(sassMiddleWare({
     src:'./assets/scss',

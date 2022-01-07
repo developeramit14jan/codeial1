@@ -8,6 +8,8 @@ router.use('/post' , require('./post')); // this will move to post and post will
 router.use('/comments' , require('./comment'));
 
 // all router can be access from index.js router 
+// router know about the Api
+router.use('/v1' , require('./Api/v1'));
 
 console.log("router loaded");
 module.exports = router;

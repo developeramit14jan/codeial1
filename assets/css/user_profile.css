@@ -1,2 +1,43 @@
 body {
-  background-color: aquamarine; }
+  background-color: white; }
+  body #userDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    height: 65%;
+    width: 95%;
+    margin-top: -0.5px;
+    margin-left: 40px;
+    background-color: #ededfb;
+    border-radius: 20px; }
+    body #userDetails #user_image {
+      border: 2px solid black;
+      border-radius: 50%;
+      margin-top: 10px; }
+    body #userDetails #pic {
+      border-radius: 50%; }
+    body #userDetails #userData {
+      margin-top: 50px; }
+      body #userDetails #userData .profile1, body #userDetails #userData .name1, body #userDetails #userData .email1, body #userDetails #userData .button1 {
+        height: 40px;
+        font-size: 30px;
+        margin: 5px; }
+        body #userDetails #userData .profile1 input, body #userDetails #userData .name1 input, body #userDetails #userData .email1 input, body #userDetails #userData .button1 input {
+          font-size: 18px;
+          padding: 5px; }
+        body #userDetails #userData .profile1 #name, body #userDetails #userData .profile1 #email, body #userDetails #userData .name1 #name, body #userDetails #userData .name1 #email, body #userDetails #userData .email1 #name, body #userDetails #userData .email1 #email, body #userDetails #userData .button1 #name, body #userDetails #userData .button1 #email {
+          width: 70%;
+          margin-left: 60px;
+          border: 0px; }
+      body #userDetails #userData .button1 {
+        margin-top: 20px;
+        text-align: center;
+        padding: 5px;
+        border: 0px; }
+        body #userDetails #userData .button1 #button {
+          width: 30%;
+          border: 0px;
+          border: 1px solid black; }
+      body #userDetails #userData span {
+        font-family: monospace; }
